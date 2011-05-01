@@ -1,10 +1,11 @@
 package src;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class DataProcessor {
 	DataHandler dh;
-	LinkedList<String[]> vehicleData;
+	ArrayList<Vehicle> vehicleData;
 	LinkedList<String[]> sensorData;
 	public DataProcessor() {
 		dh = new DataHandler();

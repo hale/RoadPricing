@@ -1,5 +1,6 @@
 package src;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import simpleIO.TextReader;
@@ -8,39 +9,37 @@ import simpleIO.TextWriter;
 public class DataHandler {
 	TextReader reader;
 	TextWriter writer;
-
-	public LinkedList<String[]> loadVehicles() {
-		return loadData("Vehicles");
-	}
-	
-	public LinkedList<String[]> loadSegmentData() {
-		return loadData("SegmentData");
-	}
-	
-	public void writeVehicles(LinkedList<String[]> vehicles) {
-		writeData(vehicles, "Vehicles");
-	}
-	
-	public void writeSegmentData(LinkedList<String[]> sensors) {
-		writeData(sensors, "SegmentData");
-	}
-	
-	private void writeData(LinkedList<String[]> data, String filename) {
-		writer = new TextWriter(filename);
-		String[] datum = data.poll();
-		while (datum != null) {
-			String line = null;
-			for (int i = 0; i < datum.length; i++) {
-				line += datum[i];
-			}
-			writer.writeLine(line);
-			datum = data.poll();
-		}
-		writer.close();
-	}
 		
-	private LinkedList<String[]> loadData(String filename) {
-		reader = new TextReader(filename);
+	//load methods
+	public ArrayList<Vehicle> loadVehicles() {
+		reader = new TextReader("Vehicles");
+		ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
+		String line = reader.readLine();
+		while (line != null) {
+			String[] data = line.split(";");
+			String reg = data[0];
+			String type = data[1];
+			double charges = Double.parseDouble(data[2]);
+			if (type.equals("commercial")) {
+				Commercial commercial = new Commercial(reg, charges);
+				vehicles.add(commercial);
+			}
+			else {  // else type is private car
+				Private privateCar = new Private(reg, charges);
+				vehicles.add(privateCar);
+			}
+			line = reader.readLine();
+		}
+		return vehicles;
+	}
+	
+	/**
+	 * Loads the text file into memory, and passes the resulting queue 
+	 * back to the caller.
+	 * @return
+	 */
+	public LinkedList<String[]> loadSegmentData() {
+		reader = new TextReader("SegmentData");
 		LinkedList<String[]> list = new LinkedList<String[]>();
 		String line = reader.readLine();
 		while (line != null) {
@@ -50,7 +49,13 @@ public class DataHandler {
 		reader.close();
 		return list;
 	}
+	// write methods
+	public void writeVehicles(ArrayList<Vehicle> vehicles) {
+		
+	}
 	
-	
+	public void writeSegmentData(LinkedList<String[]> sensorData) {
+		
+	}	
 }
 
