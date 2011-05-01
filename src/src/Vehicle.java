@@ -2,16 +2,16 @@ package src;
 import java.util.ArrayList;
 
 
-public abstract class Vehicle {
-	// the vehicles registration number
-	private String reg;
+public class Vehicle { 
+	// the vehicle's type
+	private VehicleType type;
 	// the charges this vehicle has accumulated
 	private double charges;
 	// the speeding tickets accumulated by this vehicle
 	private ArrayList<Ticket> speedingTickets;
 	
-	public Vehicle(String reg, double charges) {
-		this.reg = reg;
+	public Vehicle(VehicleType type, double charges) {
+		this.type = type;
 		this.charges = 0.0;
 		speedingTickets = new ArrayList<Ticket>();
 	}
@@ -24,24 +24,23 @@ public abstract class Vehicle {
 		return speedingTickets;
 	}
 
-	public void setCharges(double charges) {
-		this.charges = charges;
-	}
-
 	public double getCharges() {
 		return charges;
 	}
 	
+	/*
+	 * Adds a charge based on how far and what type of road
+	 */
 	public void addCharge(double charge) {
 		charges += charge;
-	}
-
-	public String getReg() {
-		return reg;
 	}
 	
 	public int getSpeedLimit(Road r) {
 		return 0;
+	}
+
+	public VehicleType getType() {
+		return type;
 	}
 	
 }

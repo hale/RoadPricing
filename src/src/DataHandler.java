@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import simpleIO.TextReader;
@@ -11,9 +12,9 @@ public class DataHandler {
 	TextWriter writer;
 		
 	//load methods
-	public ArrayList<Vehicle> loadVehicles() {
+	public HashMap<String, Vehicle> loadVehicles() {
 		reader = new TextReader("Vehicles");
-		ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
+		HashMap<String, Vehicle> vehicles = new HashMap<String, Vehicle>();
 		String line = reader.readLine();
 		while (line != null) {
 			String[] data = line.split(";");
@@ -21,23 +22,18 @@ public class DataHandler {
 			String type = data[1];
 			double charges = Double.parseDouble(data[2]);
 			if (type.equals("commercial")) {
-				Commercial commercial = new Commercial(reg, charges);
-				vehicles.add(commercial);
+				Vehicle vehicle = new Vehicle(VehicleType.COMMERCIAL, charges);
+				vehicles.put(reg, vehicle);
 			}
 			else {  // else type is private car
-				Private privateCar = new Private(reg, charges);
-				vehicles.add(privateCar);
+				Vehicle vehicle = new Vehicle(VehicleType.PRIVATE, charges);
+				vehicles.put(reg, vehicle);
 			}
 			line = reader.readLine();
 		}
 		return vehicles;
 	}
 	
-	/**
-	 * Loads the text file into memory, and passes the resulting queue 
-	 * back to the caller.
-	 * @return
-	 */
 	public LinkedList<String[]> loadSegmentData() {
 		reader = new TextReader("SegmentData");
 		LinkedList<String[]> list = new LinkedList<String[]>();
@@ -49,8 +45,9 @@ public class DataHandler {
 		reader.close();
 		return list;
 	}
+	
 	// write methods
-	public void writeVehicles(ArrayList<Vehicle> vehicles) {
+	public void writeVehicles(HashMap<String, Vehicle> vehicles) {
 		
 	}
 	
