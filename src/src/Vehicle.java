@@ -43,4 +43,9 @@ public class Vehicle {
 		return type;
 	}
 	
+	@Override
+	public String toString() {
+		return type + ";" + charges;
+	}
+	
 }

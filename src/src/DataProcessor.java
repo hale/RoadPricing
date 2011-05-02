@@ -1,6 +1,5 @@
 package src;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -47,19 +46,14 @@ public class DataProcessor {
 			VehicleType type = vehicle.getType();
 			Road r = (Road) dp.nw.getRoad(road);
 			
-			r.chargeJourney(type);
-			/*
-			 * Charge Journey detail:
-			 * 
-			 * chargeJourney() is responsible for updating the 'charges' field
+			double charge = r.chargeJourney(type);
+			vehicle.addCharge(charge);
+			dp.vehicleData.put(reg, vehicle);
+			/* chargeJourney() is responsible for updating the 'charges' field
 			 * of the vehicle object with the new charges the vehicle has incurred.
-			 * 
-			 * Given: a road segment 
-			 *        a vehicle
 			 */
 			
-			// if neccessary, write speeding tickets
-			
+			// Speeding Tickets			
 		}
 	}
 	

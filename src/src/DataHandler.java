@@ -1,8 +1,8 @@
 package src;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 import simpleIO.TextReader;
 import simpleIO.TextWriter;
@@ -48,11 +48,35 @@ public class DataHandler {
 	
 	// write methods
 	public void writeVehicles(HashMap<String, Vehicle> vehicles) {
+		writer = new TextWriter("Vehicles");
+		StringBuilder sb = new StringBuilder();
+		for (Map.Entry<String, Vehicle > entry : vehicles.entrySet()) {
+			sb.append(entry.getKey()); // the reg
+			sb.append(";");
+			sb.append(entry.getValue().toString()); // the vehicle string representation
+			//sb.append(System.getProperty("line.seperator")); // cross-platform \n
+			writer.writeLine(sb.toString());
+			sb = new StringBuilder();
+		}
+		writer.close();
 		
 	}
 	
 	public void writeSegmentData(LinkedList<String[]> sensorData) {
-		
+		writer = new TextWriter("SegmentData");
+		String[] line = sensorData.pop();
+		while (line != null) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < line.length -1; i ++) {
+				sb.append(line[i]);
+				sb.append(";");
+			}
+			sb.deleteCharAt(sb.length()-1); // remove last semicolon
+			writer.writeLine(sb.toString());
+			line = sensorData.pop();
+		}
+		writer.close();
 	}	
 }
 
+// hello i'm a lovely boy called phillip and i'm lovely

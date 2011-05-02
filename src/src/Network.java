@@ -35,8 +35,8 @@ public class Network {
 	}
 	
 	/*
-	 * The string parameter is sorted so that getting
-	 * "BA" or "AB" will return the same road.
+	 * The string parameter is sorted so that params
+	 * "BA" and "AB" will return the same road.
 	 * 
 	 * @param road The string identifier of the road.
 	 * @return The road for a given string identifier.

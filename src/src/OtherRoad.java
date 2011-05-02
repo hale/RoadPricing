@@ -10,21 +10,23 @@ public class OtherRoad extends Road {
 	
 	@Override
 	protected double chargePrivate() {
-		double charge = 0.0;
+		double charge;
 		/*
 		 * return 0.0
 		 * 
 		 * (free)
 		 */
+		charge = 0;
 		return charge;
 	}
 	
 	@Override
 	protected double chargeCommercial() {
-		double charge = 0.0;
+		double charge;
 		/*
 		 * return 0.05 * distance
 		 */
+		charge = 0.05 * distance;
 		return charge;		
 	}
 

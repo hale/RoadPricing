@@ -12,6 +12,9 @@ public abstract class Road {
 		this.distance = distance;
 	}
 	
+	/*
+	 * @return the charge in pounds for this road segment.
+	 */
 	public double chargeJourney(VehicleType type) {
 		if (type == VehicleType.COMMERCIAL) {
 			return chargeCommercial();
@@ -25,16 +28,8 @@ public abstract class Road {
 	
 	abstract double chargePrivate();
 
-	public void setSpeedLimitCommercial(int speedLimitCommercial) {
-		this.speedLimitCommercial = speedLimitCommercial;
-	}
-
 	public int getSpeedLimitCommercial() {
 		return speedLimitCommercial;
-	}
-
-	public void setSpeedLimitPrivate(int speedLimitPrivate) {
-		this.speedLimitPrivate = speedLimitPrivate;
 	}
 
 	public int getSpeedLimitPrivate() {
