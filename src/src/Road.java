@@ -1,7 +1,8 @@
 package src;
 
 public abstract class Road { 
-	private int distance;
+	// the distance of this road in miles;
+	protected int distance;
 	// the speed limit of the road for private vehicles
 	protected int speedLimitPrivate;
 	// the speed limit of the road for commercial vehicles
@@ -10,6 +11,19 @@ public abstract class Road {
 	public Road(int distance){
 		this.distance = distance;
 	}
+	
+	public double chargeJourney(VehicleType type) {
+		if (type == VehicleType.COMMERCIAL) {
+			return chargeCommercial();
+		}
+		else { // (type == VehicleType.PRIVATE)
+			return chargePrivate();
+		}
+	}
+	
+	abstract double chargeCommercial();
+	
+	abstract double chargePrivate();
 
 	public void setSpeedLimitCommercial(int speedLimitCommercial) {
 		this.speedLimitCommercial = speedLimitCommercial;

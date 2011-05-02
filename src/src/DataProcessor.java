@@ -5,19 +5,20 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class DataProcessor {
-	DataHandler dh;
-	HashMap<String, Vehicle> vehicleData;
-	LinkedList<String[]> segmentData;
+	private DataHandler dh;
+	private Network nw;
+	private HashMap<String, Vehicle> vehicleData;
+	private LinkedList<String[]> segmentData;
+	private static DataProcessor dp;
+	
 	public DataProcessor() {
 		dh = new DataHandler();
+		nw = new Network();
 	}
 	
 	public static void main(String args){
-		// load the data into memory
-		DataProcessor dp = new DataProcessor();
-		dp.vehicleData = dp.dh.loadVehicles();
-		dp.segmentData = dp.dh.loadSegmentData();
-		
+		dp = new DataProcessor();
+		dp.loadData();	
 		// process the data
 		/*
 		 * look at the first line of the segment data. 
@@ -27,7 +28,13 @@ public class DataProcessor {
 		 * 
 		 * repeat until there are no more lines.
 		 */
+		dp.processData();
+		dp.writeData();
 		
+		
+	}
+	
+	private void processData() {
 		String[] line = dp.segmentData.peek();
 		while (line != null) {
 			// parse the string[]
@@ -37,14 +44,35 @@ public class DataProcessor {
 			String finish = line[3];
 			
 			Vehicle vehicle = dp.vehicleData.get(reg);
+			VehicleType type = vehicle.getType();
+			Road r = (Road) dp.nw.getRoad(road);
+			
+			r.chargeJourney(type);
+			/*
+			 * Charge Journey detail:
+			 * 
+			 * chargeJourney() is responsible for updating the 'charges' field
+			 * of the vehicle object with the new charges the vehicle has incurred.
+			 * 
+			 * Given: a road segment 
+			 *        a vehicle
+			 */
+			
+			// if neccessary, write speeding tickets
 			
 		}
-		  
-		//write it to a file
+	}
+	
+	private void loadData() {
+		// load the data into memory
+		dp.vehicleData = dp.dh.loadVehicles();
+		dp.segmentData = dp.dh.loadSegmentData();
+	}
+	
+	private void writeData() {
 		dp.dh.writeVehicles(dp.vehicleData);
 		dp.dh.writeSegmentData(dp.segmentData);
-		//write the speeding tickets
-		
+		// write the speeding tickets file
 	}
-
+	
 }
