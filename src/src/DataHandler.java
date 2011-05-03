@@ -13,10 +13,12 @@ public class DataHandler {
 		
 	//load methods
 	public HashMap<String, Vehicle> loadVehicles() {
+		System.out.println("Vehicles file prior to processing");
 		reader = new TextReader("Vehicles");
 		HashMap<String, Vehicle> vehicles = new HashMap<String, Vehicle>();
 		String line = reader.readLine();
 		while (line != null) {
+			System.out.println("\t" + line);
 			String[] data = line.split(";");
 			String reg = data[0];
 			String type = data[1];
@@ -31,6 +33,7 @@ public class DataHandler {
 			}
 			line = reader.readLine();
 		}
+		reader.close();
 		return vehicles;
 	}
 	
@@ -48,6 +51,7 @@ public class DataHandler {
 	
 	// write methods
 	public void writeVehicles(HashMap<String, Vehicle> vehicles) {
+		System.out.println("Vehicle file after processing");
 		writer = new TextWriter("Vehicles");
 		StringBuilder sb = new StringBuilder();
 		for (Map.Entry<String, Vehicle > entry : vehicles.entrySet()) {
@@ -56,16 +60,15 @@ public class DataHandler {
 			sb.append(entry.getValue().toString()); // the vehicle string representation
 			//sb.append(System.getProperty("line.seperator")); // cross-platform \n
 			writer.writeLine(sb.toString());
+			System.out.println("\t" + sb.toString());
 			sb = new StringBuilder();
 		}
-		writer.close();
-		
+		writer.close();		
 	}
 	
 	public void writeSegmentData(LinkedList<String[]> sensorData) {
 		writer = new TextWriter("SegmentData");
-		String[] line = sensorData.pop();
-		while (line != null) {
+		for (String[] line : sensorData) {
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < line.length -1; i ++) {
 				sb.append(line[i]);
@@ -73,10 +76,8 @@ public class DataHandler {
 			}
 			sb.deleteCharAt(sb.length()-1); // remove last semicolon
 			writer.writeLine(sb.toString());
-			line = sensorData.pop();
 		}
 		writer.close();
 	}	
 }
 
-// hello i'm a lovely boy called phillip and i'm lovely

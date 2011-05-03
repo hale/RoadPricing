@@ -12,6 +12,7 @@ public class Network {
 	private HashMap<String, Road> roads;
 	
 	public Network() {
+		roads = new HashMap<String, Road>();
 		loadNetwork();
 	}
 	
@@ -19,7 +20,8 @@ public class Network {
 	 * It is important that the string keys are in 
 	 * alphabetical order.
 	 */
-	private void loadNetwork() {		
+	private void loadNetwork() {	
+		
 		roads.put("AB", new Motorway(24));
 		roads.put("BC", new Motorway(17));
 		roads.put("CE", new Motorway(23));

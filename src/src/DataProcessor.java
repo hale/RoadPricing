@@ -13,29 +13,24 @@ public class DataProcessor {
 	public DataProcessor() {
 		dh = new DataHandler();
 		nw = new Network();
+		vehicleData = new HashMap<String, Vehicle>();
+		segmentData = new LinkedList<String[]>();
 	}
 	
-	public static void main(String args){
+	public static void main(String args[]){
+		System.out.println("1) Before the data processor is instantiated");
 		dp = new DataProcessor();
+		System.out.println("2) before the data is loaded");
 		dp.loadData();	
-		// process the data
-		/*
-		 * look at the first line of the segment data. 
-		 * find the vehicle from the list of vehicles with the same reg plate
-		 * update the vehicle with the new charges, and speeding ticket(s) if applicable
-		 * read the next line.
-		 * 
-		 * repeat until there are no more lines.
-		 */
+		System.out.println("3) before the data is processed");
 		dp.processData();
+		System.out.println("4) before the data is written");
 		dp.writeData();
-		
-		
+		System.out.println("5) the last thing that should happen");
 	}
 	
 	private void processData() {
-		String[] line = dp.segmentData.peek();
-		while (line != null) {
+		for (String[] line : dp.segmentData) {
 			// parse the string[]
 			String reg = line[0];
 			String road = line[1];
@@ -49,12 +44,16 @@ public class DataProcessor {
 			double charge = r.chargeJourney(type);
 			vehicle.addCharge(charge);
 			dp.vehicleData.put(reg, vehicle);
+			System.out.println(dp.segmentData.size());
 			/* chargeJourney() is responsible for updating the 'charges' field
 			 * of the vehicle object with the new charges the vehicle has incurred.
 			 */
 			
-			// Speeding Tickets			
+			
+			// Speeding Tickets	
+		
 		}
+		
 	}
 	
 	private void loadData() {
