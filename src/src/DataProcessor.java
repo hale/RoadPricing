@@ -43,12 +43,7 @@ public class DataProcessor {
 			
 			double charge = r.chargeJourney(type);
 			vehicle.addCharge(charge);
-			dp.vehicleData.put(reg, vehicle);
-			System.out.println(dp.segmentData.size());
-			/* chargeJourney() is responsible for updating the 'charges' field
-			 * of the vehicle object with the new charges the vehicle has incurred.
-			 */
-			
+			dp.vehicleData.put(reg, vehicle);	
 			
 			// Speeding Tickets	
 		

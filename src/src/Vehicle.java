@@ -12,7 +12,7 @@ public class Vehicle {
 	
 	public Vehicle(VehicleType type, double charges) {
 		this.type = type;
-		this.charges = 0.0;
+		this.charges = charges;
 		speedingTickets = new ArrayList<Ticket>();
 	}
 
@@ -43,9 +43,17 @@ public class Vehicle {
 		return type;
 	}
 	
+	private String formatCharges() {
+		String s = String.valueOf(charges);
+		if (s.length() > 5) {
+			s = s.substring(0, 5);
+		}
+		return s;
+	}
+	
 	@Override
 	public String toString() {
-		return type + ";" + charges;
+		return type + ";" + formatCharges();
 	}
 	
 }

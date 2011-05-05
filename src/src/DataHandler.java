@@ -58,7 +58,6 @@ public class DataHandler {
 			sb.append(entry.getKey()); // the reg
 			sb.append(";");
 			sb.append(entry.getValue().toString()); // the vehicle string representation
-			//sb.append(System.getProperty("line.seperator")); // cross-platform \n
 			writer.writeLine(sb.toString());
 			System.out.println("\t" + sb.toString());
 			sb = new StringBuilder();
@@ -70,7 +69,7 @@ public class DataHandler {
 		writer = new TextWriter("SegmentData");
 		for (String[] line : sensorData) {
 			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < line.length -1; i ++) {
+			for (int i = 0; i < line.length; i ++) {
 				sb.append(line[i]);
 				sb.append(";");
 			}
