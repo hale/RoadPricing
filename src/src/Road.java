@@ -27,12 +27,53 @@ public abstract class Road {
 	abstract double chargeCommercial();
 	
 	abstract double chargePrivate();
+	
+	public boolean checkSpeed(VehicleType type, double averageSpeed) {
+		if (type == VehicleType.COMMERCIAL) {
+			return checkSpeedCommercial(averageSpeed);
+		}
+		else { // (type == VehicleType.Private)
+			return checkSpeedPrivate(averageSpeed);
+		}
+	}
+	
+	private boolean checkSpeedCommercial(double averageSpeed) {
+		int averageInt = new Double((Math.floor(averageSpeed))).intValue();
+		if (averageInt > speedLimitCommercial) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	private boolean checkSpeedPrivate(double averageSpeed) {
+		int averageInt = new Double((Math.floor(averageSpeed))).intValue();
+		if (averageInt > speedLimitPrivate) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public double averageSpeed(int duration) {
+		double durationHours = (double) duration / 60;
+		double average = distance / durationHours;
+		return average;
+	}
+	
+	public int getSpeedLimit(VehicleType type) {
+		if (type == VehicleType.COMMERCIAL) {
+			return getSpeedLimitCommercial();
+		} else {
+			return getSpeedLimitPrivate();
+		}
+	}
 
-	public int getSpeedLimitCommercial() {
+	private int getSpeedLimitCommercial() {
 		return speedLimitCommercial;
 	}
 
-	public int getSpeedLimitPrivate() {
+	private int getSpeedLimitPrivate() {
 		return speedLimitPrivate;
 	}
 

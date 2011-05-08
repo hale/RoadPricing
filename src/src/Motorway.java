@@ -8,6 +8,8 @@ public class Motorway extends Road {
 		speedLimitCommercial = 60;
 	}
 	
+	// methods to calculate charges
+	
 	@Override
 	protected double chargePrivate() {
 		double charge;
@@ -41,6 +43,5 @@ public class Motorway extends Road {
 		 */
 		charge = 0.02 * distance;
 		return charge;
-	}
-
+	}	
 }

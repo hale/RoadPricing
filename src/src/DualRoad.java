@@ -34,5 +34,4 @@ public class DualRoad extends Road {
 		}
 		return charge;		
 	}
-
 }

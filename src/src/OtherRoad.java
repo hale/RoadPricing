@@ -29,5 +29,4 @@ public class OtherRoad extends Road {
 		charge = 0.05 * distance;
 		return charge;		
 	}
-
 }
