@@ -13,13 +13,6 @@ public class Motorway extends Road {
 	@Override
 	protected double chargePrivate() {
 		double charge;
-		/*
-		 * RE: distance;
-		 * 
-		 * If less than or equal to 5 miles, return 0.0;
-		 * if less than or equal to 15 miles, return 0.02 * (distance - 5);
-		 * if more than 15 miles, return (0.01 * (distance - 15)) + 0.02 * (distance - 5);  
-		 */
 		if (distance <= 5) {
 			charge = 0;
 		}
@@ -36,11 +29,6 @@ public class Motorway extends Road {
 	@Override
 	protected double chargeCommercial() {
 		double charge;
-		/*
-		 * RE: distance;
-		 * 
-		 * return 0.02 * distance;
-		 */
 		charge = 0.02 * distance;
 		return charge;
 	}	

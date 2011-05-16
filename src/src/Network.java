@@ -5,7 +5,8 @@ import java.util.HashMap;
 
 /**
  * This class is responsible for interacting with and creating a road network.
- * @author phil989
+ * 
+ * @author Philip Hale
  *
  */
 public class Network {

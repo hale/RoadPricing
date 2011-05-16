@@ -20,15 +20,15 @@ public class DataProcessor {
 	}
 	
 	public static void main(String args[]){
-		System.out.println("1) Before the data processor is instantiated");
+		//System.out.println("1) Before the data processor is instantiated");
 		dp = new DataProcessor();
-		System.out.println("2) before the data is loaded");
+		//System.out.println("2) before the data is loaded");
 		dp.loadData();	
-		System.out.println("3) before the data is processed");
+		//System.out.println("3) before the data is processed");
 		dp.processData();
-		System.out.println("4) before the data is written");
+		//System.out.println("4) before the data is written");
 		dp.writeData();
-		System.out.println("5) the last thing that should happen");
+		//System.out.println("5) the last thing that should happen");
 	}
 	
 	private void loadData() {
